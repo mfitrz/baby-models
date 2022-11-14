@@ -19,9 +19,6 @@ var createScene = function () {
     // This creates and positions a free camera (non-mesh)
     var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 10, 0), scene);
 
-    // This targets the camera to scene origin
-    camera.setTarget(BABYLON.Vector3.Zero());
-
     // This attaches the camera to the canvas
     camera.attachControl(canvas, true);
 
@@ -31,8 +28,20 @@ var createScene = function () {
     // Default intensity is 1. Let's dim the light a small amount
     light.intensity = 0.7;
 
-    var newsphere = createSphere(0, 1, 0, 2);
-    newsphere.material = hexMat('#ff0000');
+    var fish = new meshModel('fish.glb', 1);
+
+    //var bunny = new meshModel('StanfordBunny.obj', 10);
+
+    var boom_box = new meshModel('BoomBox.glb', 25);
+
+    camera.position = new BABYLON.Vector3(-25, -14.8, -96);
+
+    // This targets the camera to scene origin
+    camera.setTarget(BABYLON.Vector3.Zero());
+
+    scene.onBeforeRenderObservable.add(() => {
+        console.log(camera.position);
+    })
     
     return scene;
 };
