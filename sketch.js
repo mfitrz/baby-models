@@ -38,10 +38,6 @@ var createScene = function () {
 
     // This targets the camera to scene origin
     camera.setTarget(BABYLON.Vector3.Zero());
-
-    scene.onBeforeRenderObservable.add(() => {
-        console.log(camera.position);
-    })
     
     return scene;
 };
